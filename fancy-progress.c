@@ -53,6 +53,12 @@ void fancy_progress_step(float progress)
 	}
 	char *bar = malloc(w.ws_col);
 
+	if (progress < 0) {
+		progress = 0;
+	} else if (progress > 100) {
+		progress = 100;
+	}
+
 	int width = (w.ws_col - 20);
 	memset(bar, '.', width);
 	memset(bar, '#', (int)(width * (progress / 100)));
