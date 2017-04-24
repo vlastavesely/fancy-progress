@@ -10,15 +10,23 @@
 static struct winsize w;
 static int initialized = 0;
 
+
+static void fancy_progress_set_window_height(int height)
+{
+	fprintf(stdout, "\n\0337"		// save cursor
+			"\033[0;%dr"		// set scroll region (this will place the cursor in the top left)
+			"\0338\033[1A\033[J"	// restore cursor but ensure its inside the scrolling area
+			, height);
+	fflush(stdout);
+}
+
+
 static void fancy_progress_init()
 {
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-
-	// Resizes a tty window in order to ignore last line
-	// and clears output after the cursor.
-	fprintf(stdout, "\n\0337\033[0;%dr\0338\033[1A\033[J", w.ws_row - 1);
-	fflush(stdout);
+	fancy_progress_set_window_height(w.ws_row - 1);
 }
+
 
 static void fancy_progress_abort()
 {
@@ -35,6 +43,7 @@ void fancy_progress_start()
 	initialized = 1;
 	fancy_progress_step(0);
 }
+
 
 void fancy_progress_step(float progress)
 {
@@ -55,9 +64,8 @@ void fancy_progress_step(float progress)
 	free(bar);
 }
 
+
 void fancy_progress_stop()
 {
-	// Clears screen after cursor and restores original tty size.
-	fprintf(stdout, "\033[J\n\0337\033[0;%dr\0338\033[1A", w.ws_row);
-	fflush(stdout);
+	fancy_progress_set_window_height(w.ws_row);
 }

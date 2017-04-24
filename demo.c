@@ -6,7 +6,7 @@
 #include <fancy-progress.h>
 
 #define ROUNDS 150
-#define STRINGS_COUNT 7
+#define STRINGS_COUNT 10
 
 static const char *strings[] = {
 	"Lorem ipsum dolor sit amet",
@@ -15,7 +15,10 @@ static const char *strings[] = {
 	"Fringilla sollicitudin. Donec eget sagittis",
 	"Quam, vitae fringilla nisl",
 	"Donec dolor justo, hendrerit sed accumsan id, sodales",
-	"Eu odio"
+	"Eu odio",
+	"Nunc vehicula hendrerit risus, vel condimentum dui rutrum sed.",
+	"Quisque metus enim, pellentesque nec nibh sit amet.",
+	"Commodo molestie diam."
 };
 
 
