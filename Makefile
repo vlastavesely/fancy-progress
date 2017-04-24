@@ -1,7 +1,7 @@
 shell=/bin/bash
 
 all:
-	gcc demo.c fancy-progress.c -I. -o demo
+	gcc demo.c src/fancy-progress.c -Isrc -o demo
 	./demo
 
 clean:
