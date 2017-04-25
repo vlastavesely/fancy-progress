@@ -4,6 +4,8 @@ Do you like the progress bar that is being shown while `apt` package manager is 
 
 ![APT progress bar](apt.png)
 
+How to Use
+----------
 In included demo application, you can see how simple is to use it. In fact, only thing you need are these three functions:
 - `fancy_progress_start()` prepares screen for the progress bar,
 - `fancy_progress_step()` renders actual progress and
